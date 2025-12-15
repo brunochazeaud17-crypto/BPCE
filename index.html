@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruno Chazeaud - Analyste BPCE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bpce: {
+                            purple: '#4F2D7F', // Violet BPCE
+                            light: '#805baf',  // Violet clair
+                            dark: '#2a1745',   // Violet foncé
+                            grey: '#f3f4f6',   // Gris fond
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { overflow: hidden; }
+        .slide-container {
+            height: 100vh;
+            width: 100vw;
+            overflow-y: hidden;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+        .slide {
+            height: 100vh;
+            width: 100vw;
+            scroll-snap-align: start;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        /* Animations */
+        .fade-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; transform: translateY(30px); }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        
+        /* Overlay Hero : Violet subtil */
+        .overlay-hero { 
+            background: linear-gradient(135deg, rgba(79, 45, 127, 0.7), rgba(20, 20, 40, 0.6)); 
+        }
+
+        /* Overlay Fin : Plus sombre pour le texte */
+        .overlay-dark { 
+            background: rgba(42, 23, 69, 0.85); 
+        }
+        
+        /* Design Cards */
+        .bpce-card {
+            background: white;
+            border-left: 6px solid #4F2D7F;
+            box-shadow: 0 10px 30px rgba(79, 45, 127, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .bpce-card:hover { transform: translateY(-5px); }
+        
+        /* Onglets Slide 1 */
+        .glass-tab {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        .glass-tab:hover { transform: scale(1.02); background: rgba(255, 255, 255, 0.2); }
+    </style>
+</head>
+<body class="bg-bpce-grey text-gray-800">
+
+    <!-- Navigation -->
+    <div class="fixed bottom-8 right-8 z-50 flex gap-4">
+        <button onclick="prevSlide()" class="p-4 bg-white shadow-xl rounded-full hover:bg-bpce-purple hover:text-white transition text-bpce-purple border border-gray-100"><i class="fa-solid fa-chevron-up"></i></button>
+        <button onclick="nextSlide()" class="p-4 bg-bpce-purple text-white shadow-xl rounded-full hover:bg-bpce-dark transition"><i class="fa-solid fa-chevron-down"></i></button>
+    </div>
+
+    <!-- Logo Fixe -->
+    <div class="fixed top-6 left-8 z-50 bg-white px-4 py-2 rounded-lg shadow-md">
+        <img src="logo-bpce.png" alt="Groupe BPCE" class="h-10 object-contain">
+    </div>
+
+    <div class="slide-container" id="scroller">
+
+        <!-- SLIDE 1 : HERO (Immeuble BPCE) -->
+        <section class="slide relative">
+            <div class="absolute inset-0 z-0">
+                <img src="bpce-building.jpg" class="w-full h-full object-cover">
+                <div class="absolute inset-0 overlay-hero"></div>
+            </div>
+
+            <div class="relative z-10 max-w-6xl w-full px-6 text-white">
+                <div class="fade-up">
+                    <div class="inline-block px-4 py-1 border border-white/60 bg-bpce-purple/30 backdrop-blur rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
+                        Candidature • Analyste Risques Transverses
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6 drop-shadow-xl">Bruno Chazeaud</h1>
+                    <h2 class="text-2xl md:text-3xl font-light mb-12 text-gray-100 drop-shadow-md">
+                        Pilotage, Stress Tests & <span class="font-semibold">Data Science</span>
+                    </h2>
+                </div>
+
+                <!-- Onglets Synthétiques -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl fade-up delay-1">
+                    <div class="glass-tab p-5 rounded-xl flex items-center gap-5">
+                        <div class="h-14 w-14 bg-white rounded-full flex items-center justify-center text-bpce-purple text-2xl shadow">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs uppercase opacity-90 font-bold tracking-wider">Profil Hybride</div>
+                            <div class="text-lg font-bold">Finance & Modélisation</div>
+                            <div class="text-sm opacity-90">Analyste Quantitatif</div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-tab p-5 rounded-xl flex items-center gap-5">
+                        <div class="h-14 w-14 bg-bpce-purple rounded-full flex items-center justify-center text-white text-2xl shadow border border-white/20">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs uppercase opacity-90 font-bold tracking-wider">Objectif</div>
+                            <div class="text-lg font-bold">Projections & IFRS9</div>
+                            <div class="text-sm opacity-90">Direction des Risques Groupe</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2 : FORMATION (Focus Réglementaire & Data) -->
+        <section class="slide bg-white">
+            <div class="max-w-6xl w-full px-6">
+                <h2 class="text-3xl font-bold text-gray-800 mb-16 fade-up flex items-center gap-4">
+                    <span class="w-2 h-10 bg-bpce-purple block"></span> Background Académique
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 fade-up delay-1">
+                    <!-- Master -->
+                    <div class="space-y-4 relative">
+                        <span class="text-6xl font-black text-gray-100 absolute -z-10 -top-8 -left-8">2025</span>
+                        <h3 class="text-2xl font-bold text-bpce-purple">Master Ingénierie des Risques</h3>
+                        <p class="text-gray-600 font-semibold">Université de Bordeaux</p>
+                        
+                        <div class="grid grid-cols-1 gap-3 pt-4">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-check-circle text-bpce-purple"></i>
+                                <span class="text-gray-700 font-medium">Bâle III/IV, CRR3 & IFRS9</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-check-circle text-bpce-purple"></i>
+                                <span class="text-gray-700 font-medium">Simulations & Stress Tests</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-check-circle text-bpce-purple"></i>
+                                <span class="text-gray-700 font-medium">Data Science (Python, R, SAS)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Licence -->
+                    <div class="space-y-4 md:border-l-2 md:pl-10 border-gray-100 relative">
+                        <span class="text-6xl font-black text-gray-100 absolute -z-10 -top-8 -left-8">2023</span>
+                        <h3 class="text-xl font-bold text-gray-700">Licence Économie & Gestion</h3>
+                        <p class="text-gray-500 font-medium">Stratégies et Décisions</p>
+                        
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-3 py-1 bg-gray-50 border rounded text-xs text-gray-600">Macroéconomie</span>
+                            <span class="px-3 py-1 bg-gray-50 border rounded text-xs text-gray-600">Statistiques</span>
+                            <span class="px-3 py-1 bg-gray-50 border rounded text-xs text-gray-600">Finance de marché</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3 : EXPÉRIENCES (Lien direct avec le poste) -->
+        <section class="slide bg-bpce-grey">
+            <div class="max-w-6xl w-full px-6">
+                <h2 class="text-3xl font-bold text-center mb-12 fade-up text-gray-800">Expériences Pertinentes</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 fade-up delay-1">
+                    
+                    <!-- FORSIDES -> Lien "Projections & Modélisation" -->
+                    <div class="bpce-card p-8 rounded-xl">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-bold text-gray-800">Forsides France</h3>
+                            <span class="bg-purple-100 text-bpce-purple px-3 py-1 rounded text-xs font-bold uppercase">Projections</span>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-laptop-code text-bpce-purple mt-1"></i>
+                                <span class="text-gray-700"><strong>Modélisation :</strong> Création de scénarios prospectifs (Stress Tests Climatiques).</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-database text-bpce-purple mt-1"></i>
+                                <span class="text-gray-700"><strong>Data & Outils :</strong> Manipulation de données complexes via Python.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-calculator text-bpce-purple mt-1"></i>
+                                <span class="text-gray-700"><strong>Analyses d'impacts :</strong> Mesure des variations sur le portefeuille.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- SOCGEN -> Lien "Risques Transverses & Reporting" -->
+                    <div class="bpce-card p-8 rounded-xl" style="border-left-color: #2a1745;">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-bold text-gray-800">Société Générale</h3>
+                            <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded text-xs font-bold uppercase">Risque Crédit</span>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-eye text-gray-700 mt-1"></i>
+                                <span class="text-gray-700"><strong>Monitoring :</strong> Suivi des encours et de la solvabilité (Bâle).</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-file-invoice text-gray-700 mt-1"></i>
+                                <span class="text-gray-700"><strong>Reporting :</strong> Production de synthèses pour le management.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-users text-gray-700 mt-1"></i>
+                                <span class="text-gray-700"><strong>Vision Transverse :</strong> Collaboration avec les équipes Finance/Risques.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4 : MINDSET (Mots clés de l'offre BPCE) -->
+        <section class="slide bg-white">
+            <div class="max-w-6xl w-full px-6 text-center">
+                <h2 class="text-3xl font-light text-gray-400 mb-12 fade-up">Mes atouts pour le pôle <span class="font-bold text-bpce-purple">"Etudes & Projections"</span></h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 fade-up delay-1">
+                    
+                    <!-- Stress Tests -->
+                    <div class="p-6 border border-gray-100 rounded-xl hover:shadow-xl transition group">
+                        <div class="w-16 h-16 mx-auto bg-purple-50 rounded-full flex items-center justify-center text-bpce-purple text-2xl mb-4 group-hover:bg-bpce-purple group-hover:text-white transition">
+                            <i class="fa-solid fa-wave-square"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 text-gray-800">Stress Tests</h3>
+                        <p class="text-sm text-gray-500">Capacité à participer aux exercices de projection et à analyser la pertinence des impacts.</p>
+                    </div>
+
+                    <!-- Agrégation -->
+                    <div class="p-6 border border-gray-100 rounded-xl hover:shadow-xl transition group">
+                        <div class="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center text-gray-600 text-2xl mb-4 group-hover:bg-gray-800 group-hover:text-white transition">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 text-gray-800">Agrégation & Synthèse</h3>
+                        <p class="text-sm text-gray-500">Rigueur pour consolider les risques de différents portefeuilles et communiquer les résultats.</p>
+                    </div>
+
+                    <!-- Technique -->
+                    <div class="p-6 border border-gray-100 rounded-xl hover:shadow-xl transition group">
+                        <div class="w-16 h-16 mx-auto bg-blue-50 rounded-full flex items-center justify-center text-blue-600 text-2xl mb-4 group-hover:bg-blue-600 group-hover:text-white transition">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2 text-gray-800">Outils & Data</h3>
+                        <p class="text-sm text-gray-500">Appétence forte pour la manipulation de données : Python, R, SAS, SQL.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5 : CONCLUSION (Avec Image "Dernière Slide") -->
+        <section class="slide relative">
+            <!-- Image de fond -->
+            <div class="absolute inset-0 z-0">
+                <img src="derniere-slide.jpg" alt="Fond Abstrait" class="w-full h-full object-cover">
+                <div class="absolute inset-0 overlay-dark"></div>
+            </div>
+
+            <div class="relative z-10 text-center fade-up px-6 text-white">
+                
+                <div class="bg-white p-6 rounded-2xl inline-block mb-10 shadow-2xl transform hover:scale-105 transition duration-500">
+                    <img src="logo-bpce.png" alt="BPCE Logo" class="h-14 object-contain">
+                </div>
+
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 drop-shadow-lg">Prêt à rejoindre la Direction des Risques.</h2>
+                <p class="text-xl text-purple-100 mb-8 max-w-2xl mx-auto drop-shadow">
+                    Allier expertise quantitative et vision transverse pour porter les ambitions du projet "Vision 2030".
+                </p>
+                
+                <div class="flex justify-center gap-8 text-3xl">
+                    <a href="https://www.linkedin.com/in/bruno-chazeaud-ba390a178/" target="_blank" class="text-white hover:text-bpce-light transition transform hover:scale-110">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:brunochazeaud17@gmail.com" class="text-white hover:text-gray-300 transition transform hover:scale-110">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Script Navigation -->
+    <script>
+        const container = document.getElementById('scroller');
+        const totalSlides = 5;
+        let currentSlide = 0;
+        function scrollToSlide(index) {
+            container.scrollTo({ top: window.innerHeight * index, behavior: 'smooth' });
+            currentSlide = index;
+        }
+        function nextSlide() { if (currentSlide < totalSlides - 1) scrollToSlide(currentSlide + 1); }
+        function prevSlide() { if (currentSlide > 0) scrollToSlide(currentSlide - 1); }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') prevSlide();
+        });
+        container.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            if (e.deltaY > 0) nextSlide(); else prevSlide();
+        }, { passive: false });
+    </script>
+</body>
+</html>
